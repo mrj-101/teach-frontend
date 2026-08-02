@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static("files"));
+
 app.use(
   compression({
     filter: (req, res) =>
@@ -23,10 +25,10 @@ app.use(
 
 app.use(cors());
 
-app.use((req, res, next) => {
-  req.db = require("./lib/db");
-  next();
-});
+// app.use((req, res, next) => {
+//   req.db = require("./lib/db");
+//   next();
+// });
 
 app.use("/api", require("./routes"));
 
